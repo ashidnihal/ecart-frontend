@@ -1,0 +1,72 @@
+<div class="container mt-5">
+    <div class="row align-items-center">
+        <div class="col-md-6 d-flex justify-content-center">
+            <img src="https://img.freepik.com/free-vector/online-shopping-concept-landing-page_23-2148253518.jpg?t=st=1717943475~exp=1717947075~hmac=63e015945bb5f7cf1b33b8669f08f7c1c7852e25e4613afd494801ff7ab75ea5&w=996" alt="" class="img-fluid">
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">
+            <main class="form-signin w-100 ">
+                <form [formGroup]="registerForm" >
+                    <h1 class="h3 mb-3 fw-normal text-center">Please Register</h1>
+                    <div class="form-floating mb-3">
+                        <input formControlName="username" type="email" class="form-control" id="floatingInput"  placeholder="name@example.com">
+                        <label for="floatingInput">Username</label>
+                        <div  *ngIf="registerForm.get('username')?.errors && registerForm.get('username')?.touched" class="text-danger">Invalid Username</div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input formControlName="email" type="email" class="form-control" id="floatingInput"  placeholder="name@example.com">
+                        <label  for="floatingInput">Email address</label>
+                        <div  *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched" class="text-danger">Invalid email</div>
+
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input formControlName="password" type="password" class="form-control" id="floatingPassword"  placeholder="Password">
+                        <label for="floatingPassword">Password</label>
+                        <div  *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched" class="text-danger">Invalid password</div>
+
+                    </div>
+
+                    <!-- <div class="form-check text-start my-3">
+                        <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Remember me
+                        </label>
+                    </div> -->
+                    <button (click)="register()"  class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+                    <div class="text-center mt-2">
+                        <a class="text-primary" routerLink="/user/login">Already Registered? Login!!!</a>
+                    </div>
+                    <p class="mt-5 mb-3 text-body-secondary text-center">© 2017–2024</p>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
+
+<!-- <form (ngSubmit)="userRegister()">
+    <h1 class="h3 mb-3 fw-normal text-center">Please Register</h1>
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="floatingInput" [(ngModel)]="user.username" name="username"  placeholder="name@example.com">
+        <label for="floatingInput">Username</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="floatingInput" [(ngModel)]="user.email" name="email" placeholder="name@example.com">
+        <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="floatingPassword" [(ngModel)]="user.password" name="password" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+    </div>
+
+    <!-- <div class="form-check text-start my-3">
+        <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+            Remember me
+        </label>
+    </div> -->
+    <!-- <button  class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+    <div class="text-center mt-2">
+        <a class="text-primary" routerLink="/user/login">Already Registered? Login!!!</a>
+    </div>
+    <p class="mt-5 mb-3 text-body-secondary text-center">© 2017–2024</p>
+</form> --> -->

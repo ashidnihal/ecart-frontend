@@ -1,0 +1,81 @@
+<!-- cart without product -->
+
+<div class="text-center m-5 p-5" *ngIf="products.length === 0">
+<img src="https://supershopping.lk/images/home/Cart-empty.gif" alt="">
+<h3 class="m-4"> Your cart was empty</h3>
+<button class="btn btn-dark" routerLink="/">Add More</button>
+</div>
+
+<!-- cart with product -->
+<div class="container mt-5" *ngIf="products.length > 0">
+    <div class="row">
+        <div class="col-md-8">
+            <table  class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Item</th>
+                        <th>Image</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let product of products ">
+                    <tr>
+                        <td>{{product.id}}</td>
+                        <td>{{product.title}}</td>
+                        <td><img [src]=product.image alt="Mens Cotton Jacket" width="100"></td>
+                        <div class="input-group">
+                            <button class="btn btn-outline-secondary" (click)="decrementQuantity(product.id)">-</button>
+                            <input type="number" class="form-control text-center" [value]="product.quantity" >
+                            <button class="btn btn-outline-secondary" (click)="incrementQuantity(product.id)">+</button>
+                          </div>
+                        <td>{{product.price}}</td>
+                        <td><button class="btn btn-danger" (click)="deleteProduct(product.id)"><i class="fa fa-trash"></i></button></td>
+                    </tr>
+                   
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body" >
+                    <h5 class="card-title">Cart Summary</h5>
+                    <p class="card-text">Total:{{totalPrice}} </p>
+
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        check out
+                      </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         <div>
+            <input type="text" placeholder="Name" class="form-control mb-3">
+            <input type="text" placeholder="Address" class="form-control mb-3">
+            <input type="text" placeholder="Phone no" class="form-control mb-3">
+            <p>totalPrice:${{totalPrice}}</p>
+            <div *ngIf="paymentStatus" class="mt-5">
+                <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+
+            </div>
+         </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button (click)="payment()" type="button" class="btn btn-primary">Payment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
